@@ -313,7 +313,7 @@ else:
             for candidate in st.session_state.candidates[1:]:
                  st.write(f"- **Culicoides (Haematomyidium) {candidate['name']}** (Probability: {candidate['prob']*100:.1f}%)")
     else:
-      st.error("No matching relevant species."
+      st.error("No matching relevant species.")
 
 bn1, bn2 = st.columns(2)
     
