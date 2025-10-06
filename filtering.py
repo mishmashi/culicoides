@@ -20,7 +20,7 @@ if "index" not in st.session_state:
     st.session_state.just_el = []
     st.session_state.threshold = 0.3
 
-def update_probabilities(ans, index, candidates, thresh, factor=.5):
+def update_probabilities(ans, index, candidates, thresh, factor=.25):
   just_el = []
   if ans is None:
     return candidates, just_el
@@ -29,7 +29,7 @@ def update_probabilities(ans, index, candidates, thresh, factor=.5):
     if pd.isna(c_ans) or ans == c_ans:
       just_el.append(0)
       if ans == c_ans and not pd.isna(c_ans):  
-        candidate["prob"] = candidate["prob"]*1.1
+        candidate["prob"] = candidate["prob"]*1.05
     elif ans != c_ans:
       candidate["prob"] = candidate["prob"]*factor
       if candidate["prob"] < thresh:
