@@ -19,7 +19,7 @@ if "index" not in st.session_state:
     st.session_state.clicked_back = False
     st.session_state.answered = []
     st.session_state.just_el = []
-    st.session_state.threshold = 0.3
+    st.session_state.threshold = 0.5
 
 def update_probabilities(ans, index, candidates, thresh, factor=.25):
   just_el = []
@@ -263,6 +263,9 @@ if st.session_state.index < len(questions):
 else:
     if len(st.session_state.candidates) == 1:
         st.success(f"The specimen is a **Culicoides (Haematomyidium) {st.session_state.candidates[0]['name']}**")
+        imgstrunique = "images/"+candidate['name']+".png"
+                    if os.path.exists(imgstrunique):
+                        st.image(imgstrunique, width='stretch')
     elif len(st.session_state.candidates) > 1:
         st.session_state.candidates = sorted(st.session_state.candidates, key=lambda c: c['prob'], reverse=1)
         probs = sorted(list(set([candidate.get('prob') for candidate in st.session_state.candidates if candidate.get('prob') is not None])), reverse=True)
