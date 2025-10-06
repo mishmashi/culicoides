@@ -277,7 +277,7 @@ else:
             n_printed = 0
             for candidate in st.session_state.candidates:
                 if candidate.get('prob') == highest_prob:
-                    st.success(f"**Culicoides (Haematomyidium) {candidate['name']}** (Probability: {candidate['prob']*100}%)")
+                    st.success(f"**Culicoides (Haematomyidium) {candidate['name']}**")
                     imgstrunique = "images/"+candidate['name']+".png"
                     if os.path.exists(imgstrunique):
                         st.image(imgstrunique, use_container_width=True)
@@ -301,7 +301,7 @@ else:
             
             for candidate in st.session_state.candidates[start_index_other:]: 
                 if candidate.get('prob') is not None and candidate['prob'] >= threshold_prob:
-                    st.write(f"- **Culicoides (Haematomyidium) {candidate['name']}** (Probability: {candidate['prob']*100:.1f}%)")
+                    st.write(f"- **Culicoides (Haematomyidium) {candidate['name']}**")
                     imgstrunique = "images/"+candidate['name']+".png"
                     if os.path.exists(imgstrunique):
                         st.image(imgstrunique, use_container_width=True)
@@ -309,7 +309,7 @@ else:
                     break
         elif len(st.session_state.candidates) > 1:
             for candidate in st.session_state.candidates[1:]:
-                st.write(f"- **Culicoides (Haematomyidium) {candidate['name']}** (Probability: {candidate['prob']*100:.1f}%)")
+                st.write(f"- **Culicoides (Haematomyidium) {candidate['name']}**")
                 imgstrunique = "images/"+candidate['name']+".png"
                 if os.path.exists(imgstrunique):
                         st.image(imgstrunique, use_container_width=True)
