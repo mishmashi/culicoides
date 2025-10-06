@@ -70,7 +70,6 @@ questions, database = load_data()
 qbs = StringIO(',,,,,,Third palpal segment with sensory organ,Distal spot on the r3 cell distinctly separated from the subapical pale spot; spermathecae unequal sized,No pale spot on the anterior part of vein CuA; smaller spermatheca with non-filiform duct,"Sensory organ on the third palpal segment deep and narrow, opening into a small pore; eyes broadly separated",Third palpal segment elongated; sclerotized ring long and curved; rudimentary spermatheca short,Male specimens: parameres without ventral lobe; distal portion without lateral fringe of spicules')
 reader = csv.reader(qbs)
 questions_b = [item for item in reader]
-st.warning(questions_b)
 
 # ---- Session Initialization ----
 if st.session_state.species_initialized == False:
@@ -109,7 +108,6 @@ if st.session_state.index < len(questions):
     
     q = questions[st.session_state.index]
     q_b = questions_b[0][st.session_state.index+6]
-    st.warning(f"qbs: {q_b}")
     
     if q_b != "" and q_b != None:
         st.write(f"**Q{st.session_state.index}:**")
