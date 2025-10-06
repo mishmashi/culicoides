@@ -311,7 +311,7 @@ else:
             for candidate in st.session_state.candidates[1:]:
                 st.write(f"- **Culicoides (Haematomyidium) {candidate['name']}** (Probability: {candidate['prob']*100:.1f}%)")
                 imgstrunique = "images/"+candidate['name']+".png"
-                    if os.path.exists(imgstrunique):
+                if os.path.exists(imgstrunique):
                         st.image(imgstrunique, use_container_width=True)
     else:
       st.error("No matching relevant species.")
