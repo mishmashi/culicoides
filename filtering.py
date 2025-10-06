@@ -52,7 +52,7 @@ def filter_candidates(candidates, just_el):
 st.header("Species Identification")
 @st.cache_data(ttl=6) #for optimization
 def load_data():
-        df = pd.read_csv("traits.csv", header=0)
+        df = pd.read_csv("traits.csv", header=1)
         questions = [col for col in df.columns if col not in ("Species", "Region", "Pathogen", "Considered", "Probability", "Image")]
 
         database = []
