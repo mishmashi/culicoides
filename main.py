@@ -263,7 +263,7 @@ if st.session_state.index < len(questions):
 else:
     if len(st.session_state.candidates) == 1:
         st.success(f"The specimen is a **Culicoides (Haematomyidium) {st.session_state.candidates[0]['name']}**")
-        imgstrunique = "images/"+candidate['name']+".png"
+        imgstrunique = "images/"+st.session_state.candidates[0]['name']+".png"
         if os.path.exists(imgstrunique):
             st.image(imgstrunique, width='stretch')
     elif len(st.session_state.candidates) > 1:
