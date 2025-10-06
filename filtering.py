@@ -150,56 +150,12 @@ if st.session_state.index < len(questions):
         st.session_state.index += 1
         st.rerun()
 
-    #else:
-     #   st.write(f"**Q{st.session_state.index + 1}: {q}**")
-
-      #  col1, col2, col3 = st.columns(3)
-
-       # imgstrunique = "images/"+str(st.session_state.index)+".png"
-        #if os.path.exists(imgstrunique):
-        #    st.image(imgstrunique)
-        #else:
-        #    tr, fal = st.columns(2)
-        #    imgstry = "images/"+str(st.session_state.index)+"a.png"
-        #    imgstrn = "images/"+str(st.session_state.index)+"b.png"
-        #    if os.path.exists(imgstry):
-        #        tr.image(imgstry)
-        #    if os.path.exists(imgstrn):
-        #        fal.image(imgstrn)
-        #if col1.button("Yes",key=f"y_sp_{st.session_state.index}", use_container_width = True):
-         #   st.session_state.c_prev = st.session_state.candidates
-          #  candidates, st.session_state.just_el = update_probabilities(1, st.session_state.index, st.session_state.candidates, st.session_state.threshold)
-           # st.session_state.candidates = filter_candidates(st.session_state.candidates, st.session_state.just_el)
-            #removed = [e for e in st.session_state.c_prev if e not in st.session_state.candidates]
-       #     st.session_state.eliminated.append(removed)
-        #    st.session_state.answered.append(st.session_state.index)
-          #  st.session_state.index += 1
-          #  st.rerun()
-          
-      #  if col3.button("No",key=f"n_sp_{st.session_state.index}", use_container_width = True):
-       #     st.session_state.c_prev = st.session_state.candidates
-        #    candidates, st.session_state.just_el = update_probabilities(0, st.session_state.index, st.session_state.candidates, st.session_state.threshold)
-         #   st.session_state.candidates = filter_candidates(st.session_state.candidates, st.session_state.just_el)
-          #  removed = [e for e in st.session_state.c_prev if e not in st.session_state.candidates]
-           # st.session_state.eliminated.append(removed)
-            #st.session_state.answered.append(st.session_state.index)
-          #  st.session_state.index += 1
-          #  st.rerun()
-          
-        #if col2.button("I don't know",key=f"idk_sp_{st.session_state.index}", use_container_width = True):
-         #   st.session_state.c_prev = st.session_state.candidates
-          #  removed = [[]]
-           # st.session_state.eliminated.append(removed)
-          #  st.session_state.answered.append(st.session_state.index)
-           # st.session_state.index += 1
-           # st.rerun()
-
 else:
     if len(st.session_state.candidates) == 1:
         st.success(f"The specimen is a **Culicoides (Haematomyidium) {st.session_state.candidates[0]['name']}**")
         imgstr = "images/"+str(st.session_state.candidates[0]['name'])+".png"
         if os.path.exists(imgstr):
-            st.image(imgstr)
+            st.image(imgstr, use_container_width=True)
     elif len(st.session_state.candidates) > 1:
         st.session_state.candidates = sorted(st.session_state.candidates, key=lambda c: c['prob'], reverse=1)
         probs = sorted(list(set([candidate.get('prob') for candidate in st.session_state.candidates if candidate.get('prob') is not None])), reverse=True)
@@ -213,7 +169,7 @@ else:
                     st.success(f"**Culicoides (Haematomyidium) {candidate['name']}** (Confidence: {candidate['prob']*100}%)")
                     imgstr = "images/"+str(candidate['name'])+".png"
                     if os.path.exists(imgstr):
-                        st.image(imgstr)
+                        st.image(imgstr, use_container_width=True)
                     n_printed +=1
                 else:
                     break
@@ -236,7 +192,7 @@ else:
                      st.write(f"- **Culicoides (Haematomyidium) {candidate['name']}** (Confidence: {candidate['prob']*100:.1f}%)")
                      imgstr = "images/"+str(candidate['name'])+".png"
                      if os.path.exists(imgstr):
-                       st.image(imgstr)
+                       st.image(imgstr, use_container_width=True)
                 else:
                     break
         elif len(st.session_state.candidates) > 1:
