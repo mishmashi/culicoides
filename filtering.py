@@ -49,7 +49,7 @@ def filter_candidates(candidates, just_el):
         return candidates 
         
  
-st.header("Species Identification")
+st.header("Paraensis Group Species Identification")
 @st.cache_data(ttl=6) #for optimization
 def load_data():
         df = pd.read_csv("traits.csv", header=1)
@@ -77,8 +77,6 @@ if st.session_state.species_initialized == False:
     st.session_state.candidates = database
     st.session_state.species_initialized = True
     
-st.title("Paraensis Group Species Identifier")
-
 st.markdown("Answer the following morphological questions to identify the species of Culicoides:")
 
 # ---- Main Loop ----
