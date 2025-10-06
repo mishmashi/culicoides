@@ -168,7 +168,7 @@ if st.session_state.index < len(questions):
             st.rerun()
     
     q = questions[st.session_state.index]
-    q_b = questions_b[0][st.session_state.index+5]
+    q_b = questions_b[0][st.session_state.index+6]
     
     if q_b != "" and q_b != None:
         st.write(f"**Q{st.session_state.index}:**")
