@@ -85,11 +85,9 @@ if st.session_state.index == 0:
     st.session_state.candidates = database # Reset candidates before applying prior
     # st.session_state.others = []
   
-    # PRIOR ONLY #
-    '''
     if st.session_state.prior:
         prior_size = len(st.session_state.prior)
-        for idx, el in enumerate(st.session_state.prior):
+      for idx, el in enumerate(st.session_state.prior):
              if el in [0,1]:
                  st.session_state.c_prev = st.session_state.candidates
                  if prior_size <= 2:
@@ -102,11 +100,10 @@ if st.session_state.index == 0:
                  st.session_state.candidates = filter_candidates(st.session_state.candidates, st.session_state.just_el)
         removed = [e for e in st.session_state.c_prev if e not in st.session_state.candidates]
         st.session_state.eliminated.append(removed)
-    '''
+
 # ---- Starting with Prior Text ----
-'''
 if st.session_state.index == 0:
-    #nl_input = st.text_area("(Optional) Start with prior:", key="prior_text_input", placeholder="Describe the mosquito in detail...")
+    nl_input = st.text_area("(Optional) Start with prior:", key="prior_text_input", placeholder="Describe the mosquito in detail...")
   
     if st.button("Submit Prior", use_container_width = True):
         st.session_state.u_inp = nl_input
@@ -128,12 +125,12 @@ if st.session_state.index == 0:
         st.rerun()
 if st.session_state.prior:        
     st.warning(f"Applied prior: {st.session_state.prior}")
-    '''
 st.markdown("Answer the following morphological questions to identify the species of Culicoides:")
 
 # ---- Main Loop ----
 
-#st.warning(f"Prior: {st.session_state.prior}")
+st.warning(f"Prior: {st.session_state.prior}")
+
 _, mid, _ = st.columns(3)
 mid.write(f"**Remaining candidates:** {len(st.session_state.candidates)}")
         
@@ -143,14 +140,12 @@ if not st.session_state.clicked_back:
         values = {c.get(st.session_state.index, -1) for c in st.session_state.candidates}
         num_with_values = sum(1 for c in st.session_state.candidates if st.session_state.index in c)
       
-        '''
         # Check if the current index has a corresponding value in the prior and skip if it does
         if st.session_state.prior and st.session_state.index < len(st.session_state.prior) and st.session_state.prior[st.session_state.index] in [0,1]:
             if st.session_state.prior[st.session_state.index] in [0, 1]:
                 st.session_state.index += 1
                 continue
-        '''
-
+                
         if st.session_state.index >= 10: 
              if len(values) <= 1 or num_with_values <= 1:
                  st.session_state.index += 1
@@ -165,15 +160,13 @@ else:
     st.session_state.clicked_back = False
     
 if st.session_state.index < len(questions):
-    '''
     if st.session_state.prior:
         if st.button("Skip to ranking", key="skip", use_container_width=True):
             st.session_state.answered.append(st.session_state.index)
             st.session_state.index = len(questions)
             st.session_state.eliminated.append([])
             st.rerun()
-    '''
-  
+    
     q = questions[st.session_state.index]
     q_b = questions_b[0][st.session_state.index]
     
@@ -274,7 +267,6 @@ if st.session_state.index < len(questions):
 else:
     if len(st.session_state.candidates) == 1:
         st.success(f"The specimen is a **Culicoides (Haematomyidium) {st.session_state.candidates[0]['name']}**")
-        #st.image(st.session_state.candidates[0]['image'], caption="Example of species")
     elif len(st.session_state.candidates) > 1:
         st.session_state.candidates = sorted(st.session_state.candidates, key=lambda c: c['prob'], reverse=1)
         probs = sorted(list(set([candidate.get('prob') for candidate in st.session_state.candidates if candidate.get('prob') is not None])), reverse=True)
