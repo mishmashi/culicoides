@@ -171,7 +171,7 @@ if st.session_state.index < len(questions):
     q_b = questions_b[0][st.session_state.index+6]
     
     if q_b != "" and q_b != None:
-        st.write(f"**Q{st.session_state.index}:**")
+        st.write(f"**Q{st.session_state.index+1}:**")
         col1, col2, col3 = st.columns(3)
         imgstrunique = "images/"+str(st.session_state.index)+".png"
         if os.path.exists(imgstrunique):
