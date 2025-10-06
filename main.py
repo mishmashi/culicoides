@@ -264,8 +264,8 @@ else:
     if len(st.session_state.candidates) == 1:
         st.success(f"The specimen is a **Culicoides (Haematomyidium) {st.session_state.candidates[0]['name']}**")
         imgstrunique = "images/"+candidate['name']+".png"
-                    if os.path.exists(imgstrunique):
-                        st.image(imgstrunique, width='stretch')
+        if os.path.exists(imgstrunique):
+            st.image(imgstrunique, width='stretch')
     elif len(st.session_state.candidates) > 1:
         st.session_state.candidates = sorted(st.session_state.candidates, key=lambda c: c['prob'], reverse=1)
         probs = sorted(list(set([candidate.get('prob') for candidate in st.session_state.candidates if candidate.get('prob') is not None])), reverse=True)
