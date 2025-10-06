@@ -19,7 +19,7 @@ if "index" not in st.session_state:
     st.session_state.clicked_back = False
     st.session_state.answered = []
     st.session_state.just_el = []
-    st.session_state.threshold = 0.4
+    st.session_state.threshold = 0.3
 
 def update_probabilities(ans, index, candidates, thresh, factor=.25):
   just_el = []
@@ -168,7 +168,7 @@ if st.session_state.index < len(questions):
             st.rerun()
     
     q = questions[st.session_state.index]
-    q_b = questions_b[0][st.session_state.index]
+    q_b = questions_b[0][st.session_state.index+5]
     
     if q_b != "" and q_b != None:
         st.write(f"**Q{st.session_state.index}:**")
@@ -178,8 +178,8 @@ if st.session_state.index < len(questions):
             st.image(imgstrunique)
         else:
             tr, fal = st.columns(2)
-            imgstry = "images/"+str(st.session_state.index)+"y.png"
-            imgstrn = "images/"+str(st.session_state.index)+"n.png"
+            imgstry = "images/"+str(st.session_state.index)+"a.png"
+            imgstrn = "images/"+str(st.session_state.index)+"b.png"
             if os.path.exists(imgstry):
                 tr.image(imgstry)
             if os.path.exists(imgstrn):
@@ -227,8 +227,8 @@ if st.session_state.index < len(questions):
             st.image(imgstrunique)
         else:
             tr, fal = st.columns(2)
-            imgstry = "images/"+str(st.session_state.index)+"y.png"
-            imgstrn = "images/"+str(st.session_state.index)+"n.png"
+            imgstry = "images/"+str(st.session_state.index)+"a.png"
+            imgstrn = "images/"+str(st.session_state.index)+"b.png"
             if os.path.exists(imgstry):
                 tr.image(imgstry)
             if os.path.exists(imgstrn):
@@ -278,6 +278,9 @@ else:
             for candidate in st.session_state.candidates:
                 if candidate.get('prob') == highest_prob:
                     st.success(f"**Culicoides (Haematomyidium) {candidate['name']}** (Probability: {candidate['prob']*100}%)")
+                    imgstrunique = "images/"+candidate['name']+".png"
+                    if os.path.exists(imgstrunique):
+                        st.image(imgstrunique, use_container_width=True)
                     n_printed +=1
                 else:
                     break
@@ -298,12 +301,18 @@ else:
             
             for candidate in st.session_state.candidates[start_index_other:]: 
                 if candidate.get('prob') is not None and candidate['prob'] >= threshold_prob:
-                     st.write(f"- **Culicoides (Haematomyidium) {candidate['name']}** (Probability: {candidate['prob']*100:.1f}%)")
+                    st.write(f"- **Culicoides (Haematomyidium) {candidate['name']}** (Probability: {candidate['prob']*100:.1f}%)")
+                    imgstrunique = "images/"+candidate['name']+".png"
+                    if os.path.exists(imgstrunique):
+                        st.image(imgstrunique, use_container_width=True)
                 else:
                     break
         elif len(st.session_state.candidates) > 1:
             for candidate in st.session_state.candidates[1:]:
-                 st.write(f"- **Culicoides (Haematomyidium) {candidate['name']}** (Probability: {candidate['prob']*100:.1f}%)")
+                st.write(f"- **Culicoides (Haematomyidium) {candidate['name']}** (Probability: {candidate['prob']*100:.1f}%)")
+                imgstrunique = "images/"+candidate['name']+".png"
+                    if os.path.exists(imgstrunique):
+                        st.image(imgstrunique, use_container_width=True)
     else:
       st.error("No matching relevant species.")
 
@@ -318,7 +327,6 @@ if st.session_state.index > 0:
         st.session_state.clicked_back = True
         st.rerun()
         
-
 if bn2.button("Restart",key="restart_sp", use_container_width = True):
     st.session_state.index = 0
     st.session_state.eliminated = []
