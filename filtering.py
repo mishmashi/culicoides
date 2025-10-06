@@ -117,8 +117,8 @@ if st.session_state.index < len(questions):
             st.image(imgstrunique)
         else:
             tr, fal = st.columns(2)
-            imgstry = "images/"+str(st.session_state.index)+"y.png"
-            imgstrn = "images/"+str(st.session_state.index)+"n.png"
+            imgstry = "images/"+str(st.session_state.index)+"a.png"
+            imgstrn = "images/"+str(st.session_state.index)+"b.png"
             if os.path.exists(imgstry):
                 tr.image(imgstry)
             if os.path.exists(imgstrn):
@@ -161,8 +161,8 @@ if st.session_state.index < len(questions):
             st.image(imgstrunique)
         else:
             tr, fal = st.columns(2)
-            imgstry = "images/"+str(st.session_state.index)+"y.png"
-            imgstrn = "images/"+str(st.session_state.index)+"n.png"
+            imgstry = "images/"+str(st.session_state.index)+"a.png"
+            imgstrn = "images/"+str(st.session_state.index)+"b.png"
             if os.path.exists(imgstry):
                 tr.image(imgstry)
             if os.path.exists(imgstrn):
@@ -201,6 +201,9 @@ if st.session_state.index < len(questions):
 else:
     if len(st.session_state.candidates) == 1:
         st.success(f"The specimen is a **Culicoides (Haematomyidium) {st.session_state.candidates[0]['name']}**")
+        imgstr = "images/"+str(st.session_state.candidates[0]['name'])+".png"
+        if os.path.exists(imgstr):
+            tr.image(imgstr)
     elif len(st.session_state.candidates) > 1:
         st.session_state.candidates = sorted(st.session_state.candidates, key=lambda c: c['prob'], reverse=1)
         probs = sorted(list(set([candidate.get('prob') for candidate in st.session_state.candidates if candidate.get('prob') is not None])), reverse=True)
@@ -212,6 +215,9 @@ else:
             for candidate in st.session_state.candidates:
                 if candidate.get('prob') == highest_prob:
                     st.success(f"**Culicoides (Haematomyidium) {candidate['name']}** (Confidence: {candidate['prob']*100}%)")
+                    imgstr = "images/"+str(candidate['name'])+".png"
+                    if os.path.exists(imgstr):
+                        tr.image(imgstr)
                     n_printed +=1
                 else:
                     break
@@ -232,6 +238,9 @@ else:
             for candidate in st.session_state.candidates[start_index_other:]: 
                 if candidate.get('prob') is not None and candidate['prob'] >= threshold_prob:
                      st.write(f"- **Culicoides (Haematomyidium) {candidate['name']}** (Confidence: {candidate['prob']*100:.1f}%)")
+                     imgstr = "images/"+str(candidate['name'])+".png"
+                     if os.path.exists(imgstr):
+                       tr.image(imgstr)
                 else:
                     break
         elif len(st.session_state.candidates) > 1:
