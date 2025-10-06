@@ -164,7 +164,7 @@ else:
             n_printed = 0
             for candidate in st.session_state.candidates:
                 if candidate.get('prob') == highest_prob:
-                    st.success(f"**Culicoides (Haematomyidium) {candidate['name']}** (Confidence: {candidate['prob']*100}%)")
+                    st.success(f"**Culicoides (Haematomyidium) {candidate['name']}**)")
                     imgstr = "images/"+str(candidate['name'])+".png"
                     if os.path.exists(imgstr):
                         st.image(imgstr, use_container_width=True)
