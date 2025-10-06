@@ -161,7 +161,7 @@ else:
     
 if st.session_state.index < len(questions):
     if st.session_state.prior:
-        if st.button("Skip to ranking", key="skip", use_container_width=True):
+        if st.button("Skip to ranking", key="skip", width='content'):
             st.session_state.answered.append(st.session_state.index)
             st.session_state.index = len(questions)
             st.session_state.eliminated.append([])
@@ -175,15 +175,15 @@ if st.session_state.index < len(questions):
         col1, col2, col3 = st.columns(3)
         imgstrunique = "images/"+str(st.session_state.index)+".png"
         if os.path.exists(imgstrunique):
-            st.image(imgstrunique, use_container_width=True)
+            st.image(imgstrunique, width='content')
         else:
             tr, fal = st.columns(2)
             imgstry = "images/"+str(st.session_state.index)+"a.png"
             imgstrn = "images/"+str(st.session_state.index)+"b.png"
             if os.path.exists(imgstry):
-                tr.image(imgstry)
+                tr.image(imgstry, width='content')
             if os.path.exists(imgstrn):
-                fal.image(imgstrn, use_container_width=True)
+                fal.image(imgstrn, width='content')
         if col1.button(q,key=f"q_sp_{st.session_state.index}", use_container_width = True):
             #if st.session_state.index < len(others_by_group) and not st.session_state.others:
              #    st.session_state.o_prev = st.session_state.others
@@ -224,7 +224,7 @@ if st.session_state.index < len(questions):
 
         imgstrunique = "images/"+str(st.session_state.index)+".png"
         if os.path.exists(imgstrunique):
-            st.image(imgstrunique, use_container_width=True)
+            st.image(imgstrunique, width='content')
         else:
             tr, fal = st.columns(2)
             imgstry = "images/"+str(st.session_state.index)+"a.png"
@@ -232,7 +232,7 @@ if st.session_state.index < len(questions):
             if os.path.exists(imgstry):
                 tr.image(imgstry)
             if os.path.exists(imgstrn):
-                fal.image(imgstrn, use_container_width=True)
+                fal.image(imgstrn, width='content')
         if col1.button("Yes",key=f"y_sp_{st.session_state.index}", use_container_width = True):
             #if st.session_state.index < len(others_by_group) and not st.session_state.others:
              #    st.session_state.o_prev = st.session_state.others
@@ -280,7 +280,7 @@ else:
                     st.success(f"**Culicoides (Haematomyidium) {candidate['name']}**")
                     imgstrunique = "images/"+candidate['name']+".png"
                     if os.path.exists(imgstrunique):
-                        st.image(imgstrunique, use_container_width=True)
+                        st.image(imgstrunique, width='content')
                     n_printed +=1
                 else:
                     break
@@ -304,7 +304,7 @@ else:
                     st.write(f"- **Culicoides (Haematomyidium) {candidate['name']}**")
                     imgstrunique = "images/"+candidate['name']+".png"
                     if os.path.exists(imgstrunique):
-                        st.image(imgstrunique, use_container_width=True)
+                        st.image(imgstrunique, width='content')
                 else:
                     break
         elif len(st.session_state.candidates) > 1:
@@ -312,14 +312,14 @@ else:
                 st.write(f"- **Culicoides (Haematomyidium) {candidate['name']}**")
                 imgstrunique = "images/"+candidate['name']+".png"
                 if os.path.exists(imgstrunique):
-                        st.image(imgstrunique, use_container_width=True)
+                        st.image(imgstrunique, width='content')
     else:
       st.error("No matching relevant species.")
 
 bn1, bn2 = st.columns(2)
     
 if st.session_state.index > 0:
-    if bn1.button("Previous question",key="prev_spec", use_container_width=True)  and st.session_state.answered:
+    if bn1.button("Previous question",key="prev_spec", width='content')  and st.session_state.answered:
         st.session_state.index = st.session_state.answered.pop()
         restore = st.session_state.eliminated.pop()
         st.session_state.candidates.extend(e for e in restore if isinstance(e, dict))
