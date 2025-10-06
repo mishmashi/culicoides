@@ -108,8 +108,8 @@ else:
 if st.session_state.index < len(questions):
     
     q = questions[st.session_state.index]
-    q_b = questions_b[0][6]
-    st.warning(f"qbs: {q_b}")
+    q_b = questions_b[0][st.session_state.index]
+    #st.warning(f"qbs: {q_b}")
     
     if q_b != "" and q_b != None:
         st.write(f"**Q{st.session_state.index}:**")
@@ -153,7 +153,7 @@ if st.session_state.index < len(questions):
             st.session_state.index += 1
             st.rerun()
 
-    #else:
+    else:
      #   st.write(f"**Q{st.session_state.index + 1}: {q}**")
 
       #  col1, col2, col3 = st.columns(3)
@@ -176,7 +176,7 @@ if st.session_state.index < len(questions):
             #removed = [e for e in st.session_state.c_prev if e not in st.session_state.candidates]
        #     st.session_state.eliminated.append(removed)
         #    st.session_state.answered.append(st.session_state.index)
-         #   st.session_state.index += 1
+            st.session_state.index += 1
           #  st.rerun()
           
       #  if col3.button("No",key=f"n_sp_{st.session_state.index}", use_container_width = True):
