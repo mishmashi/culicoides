@@ -108,7 +108,7 @@ else:
 if st.session_state.index < len(questions):
     
     q = questions[st.session_state.index]
-    q_b = questions_b[0][st.session_state.index+5]
+    q_b = questions_b[0][st.session_state.index+6]
     st.warning(f"qbs: {q_b}")
     
     if q_b != "" and q_b != None:
