@@ -175,7 +175,7 @@ if st.session_state.index < len(questions):
         col1, col2, col3 = st.columns(3)
         imgstrunique = "images/"+str(st.session_state.index)+".png"
         if os.path.exists(imgstrunique):
-            st.image(imgstrunique)
+            st.image(imgstrunique, use_container_width=True)
         else:
             tr, fal = st.columns(2)
             imgstry = "images/"+str(st.session_state.index)+"a.png"
@@ -183,7 +183,7 @@ if st.session_state.index < len(questions):
             if os.path.exists(imgstry):
                 tr.image(imgstry)
             if os.path.exists(imgstrn):
-                fal.image(imgstrn)
+                fal.image(imgstrn, use_container_width=True)
         if col1.button(q,key=f"q_sp_{st.session_state.index}", use_container_width = True):
             #if st.session_state.index < len(others_by_group) and not st.session_state.others:
              #    st.session_state.o_prev = st.session_state.others
@@ -224,7 +224,7 @@ if st.session_state.index < len(questions):
 
         imgstrunique = "images/"+str(st.session_state.index)+".png"
         if os.path.exists(imgstrunique):
-            st.image(imgstrunique)
+            st.image(imgstrunique, use_container_width=True)
         else:
             tr, fal = st.columns(2)
             imgstry = "images/"+str(st.session_state.index)+"a.png"
@@ -232,7 +232,7 @@ if st.session_state.index < len(questions):
             if os.path.exists(imgstry):
                 tr.image(imgstry)
             if os.path.exists(imgstrn):
-                fal.image(imgstrn)
+                fal.image(imgstrn, use_container_width=True)
         if col1.button("Yes",key=f"y_sp_{st.session_state.index}", use_container_width = True):
             #if st.session_state.index < len(others_by_group) and not st.session_state.others:
              #    st.session_state.o_prev = st.session_state.others
