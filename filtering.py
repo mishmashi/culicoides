@@ -107,7 +107,7 @@ else:
 if st.session_state.index < len(questions):
     
     q = questions[st.session_state.index]
-    q_b = questions_b[0][st.session_state.index+5]
+    q_b = questions_b[0][st.session_state.index+6]
     
     st.write(f"**Q{st.session_state.index}:**")
     col1, col2, col3 = st.columns(3)
