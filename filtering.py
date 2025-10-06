@@ -216,7 +216,7 @@ if bn2.button("Restart",key="restart_sp", use_container_width = True):
     st.session_state.candidates = database
     st.session_state.species_initialized = False
     st.rerun()
-st.markdown("World Health Organization. Operational Document for the Identification of Culicoides Latreille (Diptera: Ceratopogonidae)")
+st.markdown("Source: World Health Organization. Operational Document for the Identification of Culicoides Latreille (Diptera: Ceratopogonidae)")
 #if len(st.session_state.others) >0:
 #  if st.button("See rare species"):
 #    for name in others:
