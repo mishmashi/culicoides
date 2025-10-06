@@ -92,7 +92,7 @@ if not st.session_state.clicked_back:
         num_with_values = sum(1 for c in st.session_state.candidates if st.session_state.index in c)
                 
         if st.session_state.index >= 10: 
-             if len(values) <= 1 or num_with_values <= 1:
+             if num_with_values <= 1:
                  st.session_state.index += 1
              else:
                      break
@@ -107,51 +107,50 @@ else:
 if st.session_state.index < len(questions):
     
     q = questions[st.session_state.index]
-    q_b = questions_b[0][st.session_state.index+6]
+    q_b = questions_b[0][st.session_state.index+5]
     
-    if q_b != "" and q_b != None:
-        st.write(f"**Q{st.session_state.index}:**")
-        col1, col2, col3 = st.columns(3)
-        imgstrunique = "images/"+str(st.session_state.index)+".png"
-        if os.path.exists(imgstrunique):
-            st.image(imgstrunique)
-        else:
-            tr, fal = st.columns(2)
-            imgstry = "images/"+str(st.session_state.index)+"a.png"
-            imgstrn = "images/"+str(st.session_state.index)+"b.png"
-            if os.path.exists(imgstry):
-                tr.image(imgstry)
-            if os.path.exists(imgstrn):
-                fal.image(imgstrn)
-        if col1.button(q,key=f"q_sp_{st.session_state.index}", use_container_width = True):
-            st.session_state.c_prev = st.session_state.candidates            
-            candidates, st.session_state.just_el = update_probabilities(1, st.session_state.index, st.session_state.candidates, st.session_state.threshold)
-            st.session_state.candidates = filter_candidates(st.session_state.candidates, st.session_state.just_el)
-            removed = [e for e in st.session_state.c_prev if e not in st.session_state.candidates]
-            st.session_state.eliminated.append(removed)
-            st.session_state.answered.append(st.session_state.index)
-            st.session_state.index += 1
-            st.rerun()
-          
-        if col3.button(f"{q_b}",key=f"qb_sp_{st.session_state.index}", use_container_width = True):
-            st.session_state.c_prev = st.session_state.candidates      
-            candidates, st.session_state.just_el = update_probabilities(0, st.session_state.index, st.session_state.candidates, st.session_state.threshold)
-            st.session_state.candidates = filter_candidates(st.session_state.candidates, st.session_state.just_el)
-            removed = [e for e in st.session_state.c_prev if e not in st.session_state.candidates]
-            st.session_state.eliminated.append(removed)
-            st.session_state.answered.append(st.session_state.index)
-            st.session_state.index += 1
-            st.rerun()
-          
-        if col2.button("I don't know",key=f"idk_hasqb_sp_{st.session_state.index}", use_container_width = True):
-            st.session_state.c_prev = st.session_state.candidates
-            removed = [[]]
-            st.session_state.eliminated.append(removed)
-            st.session_state.answered.append(st.session_state.index)
-            st.session_state.index += 1
-            st.rerun()
-
+    st.write(f"**Q{st.session_state.index}:**")
+    col1, col2, col3 = st.columns(3)
+    imgstrunique = "images/"+str(st.session_state.index)+".png"
+    if os.path.exists(imgstrunique):
+        st.image(imgstrunique)
     else:
+        tr, fal = st.columns(2)
+        imgstry = "images/"+str(st.session_state.index)+"a.png"
+        imgstrn = "images/"+str(st.session_state.index)+"b.png"
+        if os.path.exists(imgstry):
+            tr.image(imgstry)
+        if os.path.exists(imgstrn):
+            fal.image(imgstrn)
+    if col1.button(q,key=f"q_sp_{st.session_state.index}", use_container_width = True):
+        st.session_state.c_prev = st.session_state.candidates            
+        candidates, st.session_state.just_el = update_probabilities(1, st.session_state.index, st.session_state.candidates, st.session_state.threshold)
+        st.session_state.candidates = filter_candidates(st.session_state.candidates, st.session_state.just_el)
+        removed = [e for e in st.session_state.c_prev if e not in st.session_state.candidates]
+        st.session_state.eliminated.append(removed)
+        st.session_state.answered.append(st.session_state.index)
+        st.session_state.index += 1
+        st.rerun()
+      
+    if col3.button(f"{q_b}",key=f"qb_sp_{st.session_state.index}", use_container_width = True):
+        st.session_state.c_prev = st.session_state.candidates      
+        candidates, st.session_state.just_el = update_probabilities(0, st.session_state.index, st.session_state.candidates, st.session_state.threshold)
+        st.session_state.candidates = filter_candidates(st.session_state.candidates, st.session_state.just_el)
+        removed = [e for e in st.session_state.c_prev if e not in st.session_state.candidates]
+        st.session_state.eliminated.append(removed)
+        st.session_state.answered.append(st.session_state.index)
+        st.session_state.index += 1
+        st.rerun()
+      
+    if col2.button("I don't know",key=f"idk_hasqb_sp_{st.session_state.index}", use_container_width = True):
+        st.session_state.c_prev = st.session_state.candidates
+        removed = [[]]
+        st.session_state.eliminated.append(removed)
+        st.session_state.answered.append(st.session_state.index)
+        st.session_state.index += 1
+        st.rerun()
+
+    #else:
      #   st.write(f"**Q{st.session_state.index + 1}: {q}**")
 
       #  col1, col2, col3 = st.columns(3)
@@ -174,7 +173,7 @@ if st.session_state.index < len(questions):
             #removed = [e for e in st.session_state.c_prev if e not in st.session_state.candidates]
        #     st.session_state.eliminated.append(removed)
         #    st.session_state.answered.append(st.session_state.index)
-            st.session_state.index += 1
+          #  st.session_state.index += 1
           #  st.rerun()
           
       #  if col3.button("No",key=f"n_sp_{st.session_state.index}", use_container_width = True):
