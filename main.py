@@ -87,7 +87,7 @@ if st.session_state.index == 0:
   
     if st.session_state.prior:
         prior_size = len(st.session_state.prior)
-      for idx, el in enumerate(st.session_state.prior):
+        for idx, el in enumerate(st.session_state.prior):
              if el in [0,1]:
                  st.session_state.c_prev = st.session_state.candidates
                  if prior_size <= 2:
