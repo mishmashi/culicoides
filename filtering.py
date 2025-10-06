@@ -113,15 +113,15 @@ if st.session_state.index < len(questions):
     col1, col2, col3 = st.columns(3)
     imgstrunique = "images/"+str(st.session_state.index)+".png"
     if os.path.exists(imgstrunique):
-        st.image(imgstrunique)
+        st.image(imgstrunique, use_container_width=True)
     else:
         tr, fal = st.columns(2)
         imgstry = "images/"+str(st.session_state.index)+"a.png"
         imgstrn = "images/"+str(st.session_state.index)+"b.png"
         if os.path.exists(imgstry):
-            tr.image(imgstry)
+            tr.image(imgstry, use_container_width=True)
         if os.path.exists(imgstrn):
-            fal.image(imgstrn)
+            fal.image(imgstrn, use_container_width=True)
     if col1.button(q,key=f"q_sp_{st.session_state.index}", use_container_width = True):
         st.session_state.c_prev = st.session_state.candidates            
         candidates, st.session_state.just_el = update_probabilities(1, st.session_state.index, st.session_state.candidates, st.session_state.threshold)
