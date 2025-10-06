@@ -91,11 +91,11 @@ if st.session_state.index == 0:
              if el in [0,1]:
                  st.session_state.c_prev = st.session_state.candidates
                  if prior_size <= 2:
-                     factor = 0.3
+                     factor = 0.2
                  elif prior_size <= 5:
-                     factor  = 0.35
+                     factor  = 0.25
                  else:
-                     factor = 0.4
+                     factor = 0.3
                  candidates, st.session_state.just_el = update_probabilities(el, idx, st.session_state.candidates, st.session_state.threshold, factor)
                  st.session_state.candidates = filter_candidates(st.session_state.candidates, st.session_state.just_el)
         removed = [e for e in st.session_state.c_prev if e not in st.session_state.candidates]
@@ -286,27 +286,28 @@ else:
                     break
         
         if len(probs) > 1:
-            st.markdown("Other possible species: ")
-            threshold_prob = probs[1] # Get the second highest probability
-            if len(probs)>2:
-                threshold_prob = probs[2]
-            # Start from the first candidate whose probability is less than the highest_prob
-            start_index_other = n_printed
-            if st.session_state.candidates and st.session_state.candidates[0].get('prob') is not None:
-                 highest_prob = st.session_state.candidates[0]['prob']
-                 for candidate in st.session_state.candidates:
-                     if candidate.get('prob') < highest_prob or candidate.get('prob') is None:
-                         start_index_other += 1
-                         break
-            
-            for candidate in st.session_state.candidates[start_index_other:]: 
-                if candidate.get('prob') is not None and candidate['prob'] >= threshold_prob:
-                    st.write(f"- **Culicoides (Haematomyidium) {candidate['name']}**")
-                    imgstrunique = "images/"+candidate['name']+".png"
-                    if os.path.exists(imgstrunique):
-                        st.image(imgstrunique, width='stretch')
-                else:
-                    break
+            if probs[1] >= probs[0] -.1:
+                st.markdown("Other possible species: ")
+                threshold_prob = probs[1] # Get the second highest probability
+                if len(probs)>2:
+                    threshold_prob = probs[2]
+                # Start from the first candidate whose probability is less than the highest_prob
+                start_index_other = n_printed
+                if st.session_state.candidates and st.session_state.candidates[0].get('prob') is not None:
+                     highest_prob = st.session_state.candidates[0]['prob']
+                     for candidate in st.session_state.candidates:
+                         if candidate.get('prob') < highest_prob or candidate.get('prob') is None:
+                             start_index_other += 1
+                             break
+                
+                for candidate in st.session_state.candidates[start_index_other:]: 
+                    if candidate.get('prob') is not None and candidate['prob'] >= threshold_prob:
+                        st.write(f"- **Culicoides (Haematomyidium) {candidate['name']}**")
+                        imgstrunique = "images/"+candidate['name']+".png"
+                        if os.path.exists(imgstrunique):
+                            st.image(imgstrunique, width='stretch')
+                    else:
+                        break
         elif len(st.session_state.candidates) > 1:
             for candidate in st.session_state.candidates[1:]:
                 st.write(f"- **Culicoides (Haematomyidium) {candidate['name']}**")
