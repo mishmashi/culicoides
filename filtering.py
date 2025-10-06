@@ -108,8 +108,8 @@ else:
 if st.session_state.index < len(questions):
     
     q = questions[st.session_state.index]
-    q_b = questions_b[0][st.session_state.index]
-    #st.warning(f"qbs: {q_b}")
+    q_b = questions_b[0][0:st.session_state.index]
+    st.warning(f"qbs: {q_b}")
     
     if q_b != "" and q_b != None:
         st.write(f"**Q{st.session_state.index}:**")
