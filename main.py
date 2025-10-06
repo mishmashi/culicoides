@@ -122,8 +122,8 @@ if st.session_state.index == 0:
         removed = [e for e in st.session_state.c_prev if e not in st.session_state.candidates]
         st.session_state.eliminated.append(removed)
         st.rerun()
-if st.session_state.prior:        
-    st.warning(f"Applied prior: {st.session_state.prior}")
+#if st.session_state.prior:        
+    #st.warning(f"Applied prior: {st.session_state.prior}")
 st.markdown("Answer the following morphological questions to identify the species of Culicoides:")
 
 # ---- Main Loop ----
